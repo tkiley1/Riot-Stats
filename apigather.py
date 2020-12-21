@@ -1,14 +1,13 @@
 #!usr/bin/env python
-
 from riotwatcher import LolWatcher, ApiError
-
+import apikey
 
 
 SOLODUO = 0
 FLEX = 1
 
 # golbal variables
-api_key = 'RGAPI-07fdbc44-e35f-4b30-9e22-41a0b92d1471'
+api_key = apikey.api_key_ignored
 watcher = LolWatcher(api_key)
 my_region = 'na1'
 
