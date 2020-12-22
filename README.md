@@ -7,6 +7,6 @@ api_key_ignored=''
 
 3. Run app.py
 
-4. HTTP server created at the following port: http://127.0.0.1:5000/
+4. HTTP server created at the following address: http://127.0.0.1:5000/
 
 5. Enjoy 
