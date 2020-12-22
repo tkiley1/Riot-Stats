@@ -9,7 +9,7 @@ CORS(app, support_credentials=True)
 @app.route('/')
 @cross_origin(supports_credentials=True)
 def hello():
-    return apigather.return_player_stats()
+    return 'Team InVade.GG'
 
 @app.route('/<player_name>')
 def hello1(player_name):
