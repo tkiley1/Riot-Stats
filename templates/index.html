@@ -1,0 +1,58 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+{{ super() }}
+<style>
+body { background: #e8f1f9; }
+table, th td {
+border: 1px solid black;
+border-collapse: collapse;
+width: 100%;
+}
+</style>
+{% endblock %}
+
+
+{% block title %}
+TK's Cool Web App
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+<div class="row">
+<div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+
+<h1 class="pt-5 pb-2">Welcome TK's Cool Web App that is absolutely written in python!</h1>
+
+<p class="lead">Please enter your name below.</p>
+
+{{ wtf.quick_form(form) }}
+
+<p class="pt-5"><strong>{{ message }}</strong></p>
+
+<table>
+<tr style = "border-bottom: 1px solid black">
+{% for key in headers %}
+	<th style = "border-left: 1px solid black"> {{ key }} </th>
+	{% endfor %}
+</tr>
+
+{% for pair in races %}
+<tr style = "border-bottom: 1px solid black">
+{% for item in pair %}
+<td style = "border-left: 1px solid black">    {{ item }}</td>
+{% endfor %}
+</tr>
+{% endfor %}
+
+	
+</table>
+
+</div>
+</div>
+</div>
+
+{% endblock %}
