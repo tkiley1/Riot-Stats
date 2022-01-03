@@ -12,7 +12,7 @@ def hello():
     return 'Team InVade.GG'
 
 #Dynamic player info page
-@app.route('/<player_name>')
+@app.route('/lookup/<player_name>')
 def hello1(player_name):
     return apigather.return_player_stats_by_name(str(player_name))
 
