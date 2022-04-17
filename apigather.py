@@ -81,11 +81,14 @@ def return_player_stats_by_name(player_name):
         participants_row['item2'] = row['item5']
         participants.append(participants_row)
     df = pd.DataFrame(participants)
-    return(df.to_html())
+    return(df.to_html(), stats_i_care_about)
 
 def return_home_page_stats():
     player_info = {}
     ret_string = ""
     for i in player_list:
-        ret_string = ret_string + '<h1>' + str(i) + "'s Most Recent Game </h1>" + '<br>' + str(return_player_stats_by_name(i))
+        recent_game, ranked_info = return_player_stats_by_name(i)
+
+
+        ret_string = ret_string + f'<a href=\"/lookup/{i}\">' + str(i) + "'s Most Recent Game </a>" + '<br>' + '<h2>' + str(ranked_info) + '</h2>' + str(recent_game)
     return(ret_string)
