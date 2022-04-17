@@ -5,7 +5,7 @@ import apikey
 import InVade_Players
 import json
 import pandas as pd
-
+import time
 
 # golbal variables
 api_key = apikey.api_key_ignored
@@ -56,6 +56,7 @@ def return_player_stats_by_name(player_name):
     last_match = my_matches[0]
     #match_detail = watcher.match.by_id(my_region, last_match)
     match_detail = get_match_info(my_region, last_match, api_key)
+    #print(match_detail)
     participants = []
     for row in match_detail['info']['participants']:
         participants_row = {}
@@ -82,6 +83,35 @@ def return_player_stats_by_name(player_name):
         participants.append(participants_row)
     df = pd.DataFrame(participants)
     return(df.to_html(), stats_i_care_about)
+
+def return_winrate_champion(player_name, champ_name):
+    me = watcher.summoner.by_name(my_region, player_name)
+    my_matches = get_match_history(me['puuid'], my_region, api_key, 100)
+    wr = 0
+    match_list = []
+    for match in my_matches:
+        time.sleep(1)
+
+        match_detail = get_match_info(my_region, match, api_key)
+        print("working")
+        if "info" not in match_detail.keys() or match_detail['info']['gameMode'] != 'CLASSIC':
+            print(match_detail)
+            continue
+        my_champ = ''
+        my_win = ''
+        for row in match_detail['info']['participants']:
+            try:
+                if row['puuid'] == me['puuid']:
+                    my_champ = row['championName']
+                    my_win = row['win']
+            except:
+                pass
+        for row in match_detail['info']['participants']:
+            if row['win'] != my_win and row['championName'] == champ_name:
+                match_list = match_list + [(my_champ, my_win)]
+
+    return str(match_list)
+
 
 def return_home_page_stats():
     player_info = {}

@@ -16,6 +16,10 @@ def hello():
 def hello1(player_name):
     return apigather.return_player_stats_by_name(str(player_name))
 
+@app.route('/<player_name>/<champName>')
+def wr(player_name, champName):
+    return apigather.return_winrate_champion(player_name, champName) 
+
 #Test home page
 @app.route('/home')
 def generate_table():
